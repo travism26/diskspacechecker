@@ -22,10 +22,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// fullCmd represents the full command
-var fullCmd = &cobra.Command{
-	Use:   "full",
-	Short: "This will run an full scan on the computer looking for large files",
+// pathScanCmd represents the pathScan command
+var pathScanCmd = &cobra.Command{
+	Use:   "pathScan",
+	Short: "A brief description of your command",
 	Long: ` For example:
 	diskspacecheck full --path "/Users/NAME/Downloads/"
 	diskspacecheck full --path "/Users/NAME/Downloads/" --output=/PATH/TO/output.json`,
@@ -38,10 +38,13 @@ var fullCmd = &cobra.Command{
 		if pathErr != nil {
 			fmt.Println(pathErr)
 		}
+		size, _ := cmd.Flags().GetInt64("size")
 
 		fmt.Println("full called")
 		fmt.Println("Here are the arguments of card command : " + strings.Join(args, ","))
 		fmt.Println("Value of the flag output: " + output + " path:" + path)
+		fmt.Printf("Value of globals: size: %d \n", size)
+		// fmt.Printf("Another global:%d \n", *testSize)
 		walkDir := NewBasicScanner(path, output)
 		largeFileScanner := NewLargeFileFinder(path, output, 110)
 		scanners := []scanner{}
@@ -56,18 +59,16 @@ var fullCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(fullCmd)
-	// 	fullCmd.PersistentFlags().StringP("config", "", "Path to config file")
-	fullCmd.PersistentFlags().StringP("output", "o", "", "Write the output to a file (default format: json)")
-	fullCmd.PersistentFlags().StringP("path", "p", ".", "Folder to scan")
-
+	rootCmd.AddCommand(pathScanCmd)
+	pathScanCmd.PersistentFlags().StringP("output", "o", "", "Write the output to a file (default format: json)")
+	pathScanCmd.PersistentFlags().StringP("path", "p", ".", "Folder to scan")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// fullCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// pathScanCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// fullCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// pathScanCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

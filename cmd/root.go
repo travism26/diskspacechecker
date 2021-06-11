@@ -18,6 +18,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+
 	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
@@ -53,9 +54,10 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-
+	var testSize int64
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.diskspacecheck.yaml)")
-
+	rootCmd.PersistentFlags().Int64VarP(&testSize, "size", "s", 50, "Minium size of the files you want to search for in MegaBytes (Mb)")
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "size", "50", "Minium size of the files you want to search for in MegaBytes (Mb)")
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
