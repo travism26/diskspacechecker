@@ -15,7 +15,9 @@ limitations under the License.
 */
 package main
 
-import "diskspacecheck/cmd"
+import (
+	"diskspacecheck/cmd"
+)
 
 func main() {
 	cmd.Execute()
