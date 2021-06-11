@@ -7,11 +7,13 @@ import (
 	"path/filepath"
 )
 
+// This is the interface we will build off //
 type scanner interface {
 	scan() error
 	test() string
 }
 
+// These are our test objects //
 type BasicScanner struct {
 	pathToScan string
 	outputFile string
@@ -52,6 +54,7 @@ func (s *BasicScanner) test() string {
 	return "Hello world from BasicScanner"
 }
 
+// LargeFile SCANNER //
 func NewLargeFileFinder(scanPathIn, outputFileIn string, minimumFileSizeIn int64) scanner {
 	newLargeFileFinder := &LargeFileFinder{
 		pathToScan:  scanPathIn,

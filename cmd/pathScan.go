@@ -60,7 +60,7 @@ var pathScanCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(pathScanCmd)
-	pathScanCmd.PersistentFlags().StringP("output", "o", "", "Write the output to a file (default format: json)")
+	pathScanCmd.PersistentFlags().StringP("output", "o", "", "Write the output to a file (default format: json) WIP")
 	pathScanCmd.PersistentFlags().StringP("path", "p", ".", "Folder to scan")
 	// Here you will define your flags and configuration settings.
 
