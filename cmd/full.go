@@ -43,14 +43,14 @@ var fullCmd = &cobra.Command{
 		fmt.Println("Here are the arguments of card command : " + strings.Join(args, ","))
 		fmt.Println("Value of the flag output: " + output + " path:" + path)
 		walkDir := NewBasicScanner(path, output)
-		largeFileScanner := NewLargeFileFinder(path, output, 50)
-		scanners := []scanner{walkDir, largeFileScanner}
-		// append(scanners, walkDir)
-		walkDir.test()
-		walkDir.scan()
+		largeFileScanner := NewLargeFileFinder(path, output, 110)
+		scanners := []scanner{}
+		scanners = append(scanners, walkDir)
+		scanners = append(scanners, largeFileScanner)
 
 		for _, scan := range scanners {
 			scan.test()
+			scan.scan()
 		}
 	},
 }

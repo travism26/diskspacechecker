@@ -82,7 +82,7 @@ func (l *LargeFileFinder) test() string {
 	return "looking for large files"
 }
 
-// Quick helper function to convert user input 50 -> 50MB (in bytes)
+// Quick helper function to convert user input MB into eqivalant (in bytes)
 func (l *LargeFileFinder) convertToMB(userIn int64) int64 {
 	output := userIn * (1024 * 1024)
 	return output
