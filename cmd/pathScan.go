@@ -44,17 +44,23 @@ var pathScanCmd = &cobra.Command{
 		fmt.Println("Here are the arguments of card command : " + strings.Join(args, ","))
 		fmt.Println("Value of the flag output: " + output + " path:" + path)
 		fmt.Printf("Value of globals: size: %d \n", size)
-		// fmt.Printf("Another global:%d \n", *testSize)
-		walkDir := NewBasicScanner(path, output)
-		largeFileScanner := NewLargeFileFinder(path, output, 110)
-		scanners := []scanner{}
-		scanners = append(scanners, walkDir)
-		scanners = append(scanners, largeFileScanner)
+		scanResults, _ := scan(path)
+		fmt.Printf("Number of scan results: %d", len(scanResults))
+		// for _, scandata := range scanResults {
 
-		for _, scan := range scanners {
-			scan.test()
-			scan.scan()
-		}
+		// }
+		// fmt.Printf("Another global:%d \n", *testSize)
+		// walkDir := NewBasicScanner(path, output)
+		// largeFileScanner := NewLargeFileFinder(path, output, 110)
+		// scanners := []scanner{}
+		// scanners = append(scanners, walkDir)
+		// scanners = append(scanners, largeFileScanner)
+
+		// for _, scan := range scanners {
+		// 	scan.test()
+		// 	scan.scan()
+		// }
+		// scannedfiles := largeFileScanner.getScannedFiles()
 	},
 }
 
